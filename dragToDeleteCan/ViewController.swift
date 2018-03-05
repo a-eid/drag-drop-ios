@@ -117,11 +117,14 @@ class ViewController: UIViewController {
         doc.removeFromSuperview()
         trash.backgroundColor = UIColor.clear
       }else{
-        docLeft = doc.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0)
+        docLeft?.constant = 0
+        docTop?.constant = 0
         docLeft?.isActive = true
-        
-        docTop = doc.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
         docTop?.isActive = true
+        UIView.animate(withDuration: 0.5, animations: {
+          self.doc.layoutIfNeeded()
+          self.view.layoutIfNeeded()
+        })
       }
     default:
       break
